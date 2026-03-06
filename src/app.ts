@@ -21,6 +21,7 @@ export function createApp(): Hono {
     if (text) {
       try {
         await postTweet(twitter, text);
+        console.log("Tweet posted:", text);
       } catch (err) {
         // Log but return 200. If we return an error Telegram will retry the same message
         console.error("Failed to post tweet:", text, err);

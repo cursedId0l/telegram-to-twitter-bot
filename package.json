@@ -6,7 +6,10 @@
   "scripts": {
     "build": "tsc",
     "dev": "node --env-file=.env node_modules/tsx/dist/cli.mjs watch src/dev.ts",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "webhook:register": "bash scripts/webhook.sh --register",
+    "webhook:delete": "bash scripts/webhook.sh --delete",
+    "webhook:status": "bash scripts/webhook.sh --status"
   },
   "dependencies": {
     "@hono/node-server": "^1.19.11",

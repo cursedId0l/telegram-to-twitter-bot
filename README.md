@@ -79,7 +79,7 @@ chmod +x scripts/webhook.sh
 2. Register the ngrok URL as your Telegram webhook:
 
    ```
-   pnpm webhook:register --register https://abc123.ngrok.io
+   pnpm webhook:register https://abc123.ngrok.io
    ```
 
 3. Start the dev server:

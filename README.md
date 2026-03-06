@@ -8,14 +8,14 @@ Forwards messages from a Telegram chat to Twitter.
 
 1. Open Telegram and start a chat with [@BotFather](https://t.me/BotFather)
 2. Send `/newbot` and follow the prompts
-3. Copy the **bot token** — this is your `TELEGRAM_BOT_TOKEN`
+3. Copy the **bot token**, this is your `TELEGRAM_BOT_TOKEN`
 4. Make up a random string for `TELEGRAM_WEBHOOK_SECRET` (used to verify requests come from Telegram)
 
 ### 2. Create a Twitter/X app
 
 1. Go to [developer.x.com](https://developer.x.com) and create a new app
 2. Under **User authentication settings**, enable OAuth with **Read and Write** permissions and add a callback URL (your website or `http://localhost`)
-3. Fund your developer account — X requires a paid plan for write access even though the [docs dont say it yet](https://devcommunity.x.com/t/503-errors-since-2-28/258704)
+3. Fund your developer account as X requires a paid plan for write access even though the [docs dont say it yet](https://devcommunity.x.com/t/503-errors-since-2-28/258704)
 4. Under **Keys and Tokens**, copy:
    - Consumer Key → `TWITTER_CONSUMER_KEY`
    - Consumer Secret → `TWITTER_CONSUMER_KEY_SECRET`
@@ -58,7 +58,7 @@ Leave any array empty to allow all (e.g. empty `allowedUserIds` allows all users
 
 ### Prerequisites
 
-- [ngrok](https://ngrok.com) — to expose your local server to Telegram's webhook
+- [ngrok](https://ngrok.com) to expose your local server to Telegram's webhook
 
 ### First time setup
 

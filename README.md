@@ -93,7 +93,7 @@ chmod +x scripts/webhook.sh
 To stop and clean up, delete the webhook when done:
 
 ```
-./scripts/webhook.sh --delete
+pnpm webhook:delete
 ```
 
 ### Webhook scripts

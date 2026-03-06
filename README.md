@@ -1,6 +1,6 @@
 # Telegram to Twitter Bot
 
-Forwards messages from a Telegram group chat to Twitter/X.
+Forwards messages from a Telegram chat to Twitter.
 
 ## Setup
 

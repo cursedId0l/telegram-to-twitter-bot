@@ -82,6 +82,7 @@ chmod +x scripts/webhook.sh
    pnpm webhook:register https://abc123.ngrok.io
    ```
 
+
 3. Start the dev server:
 
    ```
@@ -96,7 +97,33 @@ To stop and clean up, delete the webhook when done:
 pnpm webhook:delete
 ```
 
-### Webhook scripts
+## Scripts
+
+Make all scripts executable before running them:
+
+```
+chmod +x scripts/*.sh
+```
+
+### `webhook.sh`
+
+Manages the Telegram webhook registration.
+
+```
+pnpm webhook:register https://abc123.ngrok.io
+pnpm webhook:status
+pnpm webhook:delete
+```
+
+### `get-twitter-user-id.sh`
+
+Looks up the numeric Twitter user ID for a given handle. Useful for finding the `recipientIds` to use when configuring DM mode in `src/config.ts`.
+
+Requires `TWITTER_BEARER_TOKEN` in your `.env` file — find it under **Keys and Tokens** in the Twitter developer portal.
+
+```
+pnpm twitter:user-id somehandle
+```
 
 ## Deployment (AWS)
 

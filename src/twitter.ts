@@ -16,3 +16,11 @@ export async function postTweet(
 ): Promise<void> {
   await client.v2.tweet(text);
 }
+
+export async function sendDm(
+  client: TwitterApi,
+  recipientId: string,
+  text: string,
+): Promise<void> {
+  await client.v2.sendDmToParticipant(recipientId, { text });
+}

@@ -1,7 +1,7 @@
 import { Hono } from "hono";
-import { config, env } from "./config.js";
+import { config, env, TwitterAction } from "./config.js";
 import { shouldPost } from "./filter.js";
-import { createTwitterClient, postTweet } from "./twitter.js";
+import { createTwitterClient, postTweet, sendDm } from "./twitter.js";
 import type { TelegramUpdate } from "./filter.js";
 
 const twitter = createTwitterClient(env);
@@ -18,14 +18,28 @@ export function createApp(): Hono {
     const update = (await c.req.json()) as TelegramUpdate;
     const text = shouldPost(update, config);
 
-    if (text) {
-      try {
-        await postTweet(twitter, text);
-        console.log("Tweet posted:", text);
-      } catch (err) {
-        // Log but return 200. If we return an error Telegram will retry the same message
-        console.error("Failed to post tweet:", text, err);
+    if (!text) return c.json({ ok: true });
+
+    try {
+      switch (config.twitter.action) {
+        case TwitterAction.DM:
+          await Promise.all(
+            config.twitter.recipientIds.map((id) => sendDm(twitter, id, text)),
+          );
+          console.log("DM sent:", text);
+          break;
+        case TwitterAction.TWEET:
+          await postTweet(twitter, text);
+          console.log("Tweet posted:", text);
+          break;
+        default:
+          throw new Error(
+            `Unknown twitter action: ${(config.twitter as { action: string }).action}`,
+          );
       }
+    } catch (err) {
+      // Log but return 200. If we return an error Telegram will retry the same message
+      console.error("Failed to post to Twitter:", text, err);
     }
 
     return c.json({ ok: true });

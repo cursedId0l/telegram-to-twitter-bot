@@ -9,7 +9,8 @@
     "start": "node dist/index.js",
     "webhook:register": "bash scripts/webhook.sh --register",
     "webhook:delete": "bash scripts/webhook.sh --delete",
-    "webhook:status": "bash scripts/webhook.sh --status"
+    "webhook:status": "bash scripts/webhook.sh --status",
+    "twitter:user-id": "bash scripts/get-twitter-user-id.sh"
   },
   "dependencies": {
     "@hono/node-server": "^1.19.11",

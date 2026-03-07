@@ -1,15 +1,29 @@
+export enum TwitterAction {
+  TWEET = "tweet",
+  DM = "dm",
+}
+
+// You will need @userinfobot https://telegram.me/userinfobot
+// Leave an array empty if you don't want any restrictions
 export interface BotConfig {
-  // You will need @userinfobot https://telegram.me/userinfobot
-  // Leave an array empty if you don't want any restrictions
   telegram: {
     // Which chats to watch. Get the ID by adding @userinfobot to your group.
     allowedChatIds: number[];
+
     // Only post messages from these userIDs.
     // To get a userID forward one of their messages to @userinfobot.
     allowedUserIds: number[];
+
     // Only post messages matching at least one of these patterns.
     contentFilters: RegExp[];
   };
+  twitter:
+    | { action: TwitterAction.TWEET }
+    | {
+        action: TwitterAction.DM;
+        // Numeric Twitter user IDs to DM. Run `pnpm twitter:user-id <handle>` to look up.
+        recipientIds: string[];
+      };
 }
 
 // Edit this to configure your bot
@@ -19,6 +33,7 @@ export const config: BotConfig = {
     allowedUserIds: [],
     contentFilters: [],
   },
+  twitter: { action: TwitterAction.DM, recipientIds: [] },
 };
 
 function requireEnv(key: string): string {
